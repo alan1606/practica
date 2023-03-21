@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: 
+              - "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders:
+              - "Content-Type"
+      routes:
+      - id: microservicio-alumnos
+        uri: lb://microservicio-alumnos
+        predicates:
+          - Path=/api/**
+        filters:
+          - StripPrefix=1
+
+
+
